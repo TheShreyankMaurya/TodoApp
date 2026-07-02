@@ -17,6 +17,10 @@ function TodoList() {
         setNewTodo(event.target.value);
     };
 
+    let deleteTodo = (id) => {
+        setTodos((prevTodos) => prevTodos.filter((todo) => todo.id != id));
+    };
+
     return (
         <div>
             <input
@@ -32,7 +36,14 @@ function TodoList() {
             <h4>Tasks Todo</h4>
             <ul>
                 {todos.map((todo) => (
-                    <li key={todo.id}>{todo.task}</li>
+                    <li key={todo.id}>
+                        <span>
+                            {todo.task}
+                            <button onClick={() => deleteTodo(todo.id)}>
+                                Delete
+                            </button>
+                        </span>
+                    </li>
                 ))}
             </ul>
         </div>
