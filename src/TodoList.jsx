@@ -2,12 +2,21 @@ import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 
 function TodoList() {
-    let [todos, setTodos] = useState([{ task: "sample task", id: uuidv4() }]);
+    let [todos, setTodos] = useState([
+        { task: "sample task", id: uuidv4(), isDone: false },
+    ]);
     let [newTodo, setNewTodo] = useState("");
+
+    let styles = {
+        textDecoration: todos.isDone == true ? "line-through" : "",
+    };
 
     function addNewTask() {
         setTodos((prevTodo) => {
-            return [...prevTodo, { task: newTodo, id: uuidv4() }];
+            return [
+                ...prevTodo,
+                { task: newTodo, id: uuidv4(), isDone: false },
+            ];
         });
 
         setNewTodo("");
@@ -19,6 +28,26 @@ function TodoList() {
 
     let deleteTodo = (id) => {
         setTodos((prevTodos) => prevTodos.filter((todo) => todo.id != id));
+    };
+
+    let changeDone = (id) => {
+        setTodos((prevTodos) =>
+            prevTodos.map((todo) => {
+                if (todo.id === id) {
+                    return { ...todo, isDone: !todo.isDone };
+                } else {
+                    return todo;
+                }
+            }),
+        );
+    };
+
+    let allDone = (id) => {
+        setTodos((prevTodos) =>
+            prevTodos.map((todo) => {
+                return { ...todo, isDone: true };
+            }),
+        );
     };
 
     return (
@@ -38,14 +67,28 @@ function TodoList() {
                 {todos.map((todo) => (
                     <li key={todo.id}>
                         <span>
-                            {todo.task}
+                            <span
+                                style={{
+                                    textDecorationLine: todo.isDone
+                                        ? "line-through"
+                                        : "none",
+                                }}
+                            >
+                                {todo.task}
+                            </span>
+                            &nbsp;&nbsp;&nbsp;
                             <button onClick={() => deleteTodo(todo.id)}>
                                 Delete
+                            </button>
+                            &nbsp;&nbsp;&nbsp;
+                            <button onClick={() => changeDone(todo.id)}>
+                                Done
                             </button>
                         </span>
                     </li>
                 ))}
             </ul>
+            <button onClick={allDone}>Done All</button>
         </div>
     );
 }
