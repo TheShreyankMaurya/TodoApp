@@ -3,6 +3,7 @@ import AppHeader from "./HeaderArea/AppHeader";
 import { useRef, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import AddTaskForm from "./Input/AddTaskForm";
+import TaskList from "./List/TaskList";
 
 export default function TodoList() {
     console.log("Rendered");
@@ -56,6 +57,8 @@ export default function TodoList() {
                     borderColor: "#D8DEE2",
                 }}
             ></Divider>
+            <br />
+            <TaskList todo={todo}></TaskList>
         </>
     );
 }
