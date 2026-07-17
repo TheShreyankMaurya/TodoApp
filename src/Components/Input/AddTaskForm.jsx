@@ -2,12 +2,17 @@ import { useState } from "react";
 import "./AddTaskForm.css";
 import Button from "@mui/material/Button";
 
-export default function AddTaskForm() {
+export default function AddTaskForm({ addNewTodo }) {
     let [newTodo, setNewTodo] = useState("");
 
     let updateTodoValue = (event) => {
         setNewTodo(event.target.value);
     };
+
+    function setAddNewTodo() {
+        addNewTodo(newTodo, 2);
+        setNewTodo("");
+    }
 
     return (
         <div>
@@ -18,7 +23,9 @@ export default function AddTaskForm() {
                 onChange={updateTodoValue}
             />
             &nbsp;&nbsp;&nbsp;
-            <button className="AddTaskFormButton">+</button>
+            <button className="AddTaskFormButton" onClick={setAddNewTodo}>
+                +
+            </button>
         </div>
     );
 }

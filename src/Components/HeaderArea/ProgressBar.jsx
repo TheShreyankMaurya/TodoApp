@@ -20,7 +20,7 @@ export default function ProgressBar({ todo }) {
 
                     [`& .${linearProgressClasses.bar}`]: {
                         borderRadius: 10,
-                        background: "linear-gradient(90deg, #4F52E0, #7A7DF0)",
+                        background: "linear-gradient(90deg, #4F52E0, #878aea)",
                     },
                 }}
             ></LinearProgress>
