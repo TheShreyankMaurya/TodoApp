@@ -2,11 +2,15 @@ import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
 import Box from "@mui/material/Box";
-
 import Typography from "@mui/material/Typography";
 import TaskCheckbox from "./TaskCheckbox";
+import Divider from "@mui/material/Divider";
+import TaskActions from "./TaskActions";
+import { useState } from "react";
 
 export default function TaskList({ todo, setTodo }) {
+    const [isHovered, setIsHovered] = useState(null);
+
     return (
         <List>
             {todo.map((obj) => (
@@ -16,9 +20,14 @@ export default function TaskList({ todo, setTodo }) {
                         display: "flex",
                         alignItems: "center",
                         height: 90,
-                        borderBottom: "1px solid #eee",
+                        borderBottom: "2px solid #E4E9EC",
                         gap: 3,
+                        "&:hover": {
+                            backgroundColor: "#F7F9FA",
+                        },
                     }}
+                    onMouseEnter={() => setIsHovered(obj.id)}
+                    onMouseLeave={() => setIsHovered(null)}
                 >
                     <Typography
                         sx={{
@@ -54,6 +63,25 @@ export default function TaskList({ todo, setTodo }) {
                     >
                         {obj.text}
                     </Typography>
+
+                    {obj.dueDate !== null && (
+                        <Typography
+                            sx={{
+                                flex: 1,
+                                fontSize: 26,
+                            }}
+                        >
+                            {obj.dueDate.format("MMM DD")}
+                        </Typography>
+                    )}
+
+                    {isHovered === obj.id && (
+                        <TaskActions
+                            todo={todo}
+                            setTodo={setTodo}
+                            id={obj.id}
+                        ></TaskActions>
+                    )}
                 </ListItem>
             ))}
         </List>
