@@ -2,11 +2,11 @@ import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
 import Box from "@mui/material/Box";
-import CheckCircleIcon from "@mui/icons-material/CheckCircle";
-import RadioButtonUncheckedIcon from "@mui/icons-material/RadioButtonUnchecked";
-import Typography from "@mui/material/Typography";
 
-export default function TaskList({ todo }) {
+import Typography from "@mui/material/Typography";
+import TaskCheckbox from "./TaskCheckbox";
+
+export default function TaskList({ todo, setTodo }) {
     return (
         <List>
             {todo.map((obj) => (
@@ -38,21 +38,11 @@ export default function TaskList({ todo }) {
                         }}
                     />
 
-                    {obj.done ? (
-                        <CheckCircleIcon
-                            sx={{
-                                color: "#4f46e5",
-                                fontSize: 44,
-                            }}
-                        />
-                    ) : (
-                        <RadioButtonUncheckedIcon
-                            sx={{
-                                color: "#cbd5e1",
-                                fontSize: 44,
-                            }}
-                        />
-                    )}
+                    <TaskCheckbox
+                        todo={todo}
+                        setTodo={setTodo}
+                        obj={obj}
+                    ></TaskCheckbox>
 
                     <Typography
                         sx={{

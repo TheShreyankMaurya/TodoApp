@@ -6,12 +6,9 @@ import AddTaskForm from "./Input/AddTaskForm";
 import TaskList from "./List/TaskList";
 
 export default function TodoList() {
-    console.log("Rendered");
-
     const tokenCount = useRef(1);
 
     function getTokenNumber() {
-        console.log(tokenCount.current);
         tokenCount.current += 1;
         return tokenCount.current;
     }
@@ -58,7 +55,7 @@ export default function TodoList() {
                 }}
             ></Divider>
             <br />
-            <TaskList todo={todo}></TaskList>
+            <TaskList todo={todo} setTodo={setTodo}></TaskList>
         </>
     );
 }
