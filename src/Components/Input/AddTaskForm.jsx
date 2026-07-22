@@ -6,28 +6,43 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import CalendarMonthOutlinedIcon from "@mui/icons-material/CalendarMonthOutlined";
 import IconButton from "@mui/material/IconButton";
+import Alert from "@mui/material/Alert";
 
 export default function AddTaskForm({ addNewTodo }) {
     const [newTodo, setNewTodo] = useState("");
     const [date, setDate] = useState(null);
     const [open, setOpen] = useState(false);
+    const [showAlert, setShowAlert] = useState(false);
 
     let updateTodoValue = (event) => {
         setNewTodo(event.target.value);
     };
 
     function setAddNewTodo() {
+        if (newTodo.trim().length === 0) {
+            setShowAlert(true);
+            return;
+        }
+
+        setShowAlert(false);
         addNewTodo(newTodo, 2, date);
         setNewTodo("");
+        setDate(null);
     }
 
     return (
         <div>
+            {showAlert && (
+                <Alert severity="error" sx={{ mb: 2 }}>
+                    Please enter some task!
+                </Alert>
+            )}
             <input
                 type="text"
                 placeholder="Add to the docket..."
                 value={newTodo}
                 onChange={updateTodoValue}
+                required
             />
             &nbsp;&nbsp;&nbsp;
             <LocalizationProvider dateAdapter={AdapterDayjs}>

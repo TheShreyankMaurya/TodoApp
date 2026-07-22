@@ -7,6 +7,7 @@ import TaskCheckbox from "./TaskCheckbox";
 import Divider from "@mui/material/Divider";
 import TaskActions from "./TaskActions";
 import { useState } from "react";
+import DueDateBadge from "./DueDateBagde";
 
 export default function TaskList({ todo, setTodo }) {
     const [isHovered, setIsHovered] = useState(null);
@@ -65,14 +66,7 @@ export default function TaskList({ todo, setTodo }) {
                     </Typography>
 
                     {obj.dueDate !== null && (
-                        <Typography
-                            sx={{
-                                flex: 1,
-                                fontSize: 26,
-                            }}
-                        >
-                            {obj.dueDate.format("MMM DD")}
-                        </Typography>
+                        <DueDateBadge dueDate={obj.dueDate}></DueDateBadge>
                     )}
 
                     {isHovered === obj.id && (
