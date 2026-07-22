@@ -4,11 +4,12 @@ import LinearProgress, {
 import { TodoInfo } from "../TodoInfo";
 
 export default function ProgressBar({ todo }) {
+    let progress = (TodoInfo(todo).done / TodoInfo(todo).total) * 100;
     return (
         <div>
             <LinearProgress
                 variant="determinate"
-                value={40}
+                value={progress}
                 sx={{
                     width: 400,
                     height: 5,

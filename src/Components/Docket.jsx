@@ -5,6 +5,7 @@ import { v4 as uuidv4 } from "uuid";
 import AddTaskForm from "./Input/AddTaskForm";
 import TaskList from "./List/TaskList";
 import AppFooter from "./Footer/AppFooter";
+import "./Docket.css";
 
 export default function TodoList() {
     const tokenCount = useRef(1);
@@ -39,8 +40,10 @@ export default function TodoList() {
         ]);
     };
 
+    const [priorityCount, setPriorityCount] = useState(0);
+
     return (
-        <>
+        <div className="docket">
             <AppHeader todo={todo}></AppHeader>
 
             <br />
@@ -54,7 +57,12 @@ export default function TodoList() {
 
             <br />
 
-            <AddTaskForm addNewTodo={addNewTodo}></AddTaskForm>
+            <AddTaskForm
+                addNewTodo={addNewTodo}
+                todo={todo}
+                priorityCount={priorityCount}
+                setPriorityCount={setPriorityCount}
+            ></AddTaskForm>
 
             <br />
 
@@ -69,6 +77,6 @@ export default function TodoList() {
             <br />
 
             <AppFooter todo={todo} setTodo={setTodo}></AppFooter>
-        </>
+        </div>
     );
 }

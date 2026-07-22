@@ -8,9 +8,18 @@ import Divider from "@mui/material/Divider";
 import TaskActions from "./TaskActions";
 import { useState } from "react";
 import DueDateBadge from "./DueDateBagde";
+import PriorityPicker from "../Input/PriorityPicker";
+import { TodoInfo } from "../TodoInfo";
+import EmptyTaskState from "./EmptyTaskState";
 
 export default function TaskList({ todo, setTodo }) {
     const [isHovered, setIsHovered] = useState(null);
+
+    let total = TodoInfo(todo).total;
+
+    if (total === 0) {
+        return <EmptyTaskState />;
+    }
 
     return (
         <List>
@@ -53,6 +62,14 @@ export default function TaskList({ todo, setTodo }) {
                         setTodo={setTodo}
                         obj={obj}
                     ></TaskCheckbox>
+
+                    <PriorityPicker
+                        priorityCount={obj.priority}
+                        setTodo={setTodo}
+                        obj={obj}
+                        location={"list"}
+                        id={obj.id}
+                    ></PriorityPicker>
 
                     <Typography
                         sx={{
