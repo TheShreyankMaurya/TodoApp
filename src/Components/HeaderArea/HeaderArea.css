@@ -1,0 +1,59 @@
+/* .AppHeader {
+    height: 78px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 28px 28px 20px 28px;
+}
+
+.AppHeaderInfo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ProgressBar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+} */
+
+.AppHeader {
+    padding: 28px 28px 20px 28px;
+    height: 78px;
+}
+
+.AppHeaderInfo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.AppHeaderInfo h1 {
+    margin: 0;
+    font-family: Georgia, serif;
+    font-size: 38px;
+    font-weight: 700;
+    color: #1e2a44;
+    letter-spacing: -1px;
+}
+
+.AppHeaderInfo .MuiTypography-root {
+    font-size: 14px;
+    font-weight: 600;
+    color: #9aa8bb;
+    letter-spacing: 0.3px;
+}
+
+/* Progress section */
+.ProgressBar {
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+/* If ProgressBar component contains the bar + count */
+.ProgressBar > * {
+    width: 100%;
+}

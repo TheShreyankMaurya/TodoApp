@@ -2,16 +2,21 @@ import LinearProgress, {
     linearProgressClasses,
 } from "@mui/material/LinearProgress";
 import { TodoInfo } from "../TodoInfo";
+import Typography from "@mui/material/Typography";
+import "./ProgressBar.css";
 
 export default function ProgressBar({ todo }) {
-    let progress = (TodoInfo(todo).done / TodoInfo(todo).total) * 100;
+    const { total, done, remaining } = TodoInfo(todo);
+
+    const progress = total === 0 ? 0 : (done / total) * 100;
+
     return (
-        <div>
+        <div className="progressContainer">
             <LinearProgress
                 variant="determinate"
                 value={progress}
                 sx={{
-                    width: 400,
+                    flex: 1,
                     height: 5,
                     borderRadius: 10,
 
@@ -25,9 +30,9 @@ export default function ProgressBar({ todo }) {
                     },
                 }}
             ></LinearProgress>
-            <p>
+            <Typography>
                 {TodoInfo(todo).done}/{TodoInfo(todo).total} done
-            </p>
+            </Typography>
         </div>
     );
 }

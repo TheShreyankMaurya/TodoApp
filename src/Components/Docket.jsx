@@ -46,16 +46,12 @@ export default function TodoList() {
         <div className="docket">
             <AppHeader todo={todo}></AppHeader>
 
-            <br />
-
             <Divider
                 sx={{
                     borderStyle: "dashed",
                     borderColor: "#D8DEE2",
                 }}
             ></Divider>
-
-            <br />
 
             <AddTaskForm
                 addNewTodo={addNewTodo}
@@ -64,8 +60,6 @@ export default function TodoList() {
                 setPriorityCount={setPriorityCount}
             ></AddTaskForm>
 
-            <br />
-
             <Divider
                 sx={{
                     borderColor: "#D8DEE2",
@@ -73,8 +67,6 @@ export default function TodoList() {
             ></Divider>
 
             <TaskList todo={todo} setTodo={setTodo}></TaskList>
-
-            <br />
 
             <AppFooter todo={todo} setTodo={setTodo}></AppFooter>
         </div>
