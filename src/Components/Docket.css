@@ -1,6 +1,8 @@
 .docket {
     width: 560px;
-    height: 460px;
+    height: auto;
+    min-height: 0;
+    overflow: hidden;
     background-color: #ffffff;
     border-radius: 25px;
     box-shadow:

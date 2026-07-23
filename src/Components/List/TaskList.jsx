@@ -22,18 +22,23 @@ export default function TaskList({ todo, setTodo }) {
     }
 
     return (
-        <List>
+        <List
+            sx={{
+                padding: 0,
+                margin: 0,
+            }}
+        >
             {todo.map((obj) => (
                 <ListItem
                     key={obj.id}
                     sx={{
                         display: "flex",
                         alignItems: "center",
-                        height: 90,
-                        borderBottom: "2px solid #E4E9EC",
-                        gap: 3,
+                        minHeight: 60,
+                        px: 3,
+                        borderBottom: "1px solid #EEF2F5",
                         "&:hover": {
-                            backgroundColor: "#F7F9FA",
+                            backgroundColor: "#F8FAFC",
                         },
                     }}
                     onMouseEnter={() => setIsHovered(obj.id)}
@@ -41,10 +46,11 @@ export default function TaskList({ todo, setTodo }) {
                 >
                     <Typography
                         sx={{
-                            width: 70,
-                            color: "#a0acb8",
-                            fontSize: 20,
+                            width: 40,
+                            fontSize: 13,
+                            color: "#B8C2CC",
                             fontFamily: "monospace",
+                            textAlign: "center",
                         }}
                     >
                         {obj.tokenNumber}
@@ -52,47 +58,89 @@ export default function TaskList({ todo, setTodo }) {
 
                     <Box
                         sx={{
-                            height: 55,
-                            borderLeft: "2px dashed #d7dde5",
+                            width: 16,
+                            display: "flex",
+                            justifyContent: "center",
                         }}
-                    />
+                    >
+                        <Box
+                            sx={{
+                                height: 24,
+                                borderLeft: "2px dashed #D8DEE2",
+                            }}
+                        />
+                    </Box>
 
-                    <TaskCheckbox
-                        todo={todo}
-                        setTodo={setTodo}
-                        obj={obj}
-                    ></TaskCheckbox>
+                    <Box
+                        sx={{
+                            width: 40,
+                            display: "flex",
+                            justifyContent: "center",
+                        }}
+                    >
+                        <TaskCheckbox
+                            todo={todo}
+                            setTodo={setTodo}
+                            obj={obj}
+                        ></TaskCheckbox>
+                    </Box>
 
-                    <PriorityPicker
-                        priorityCount={obj.priority}
-                        setTodo={setTodo}
-                        obj={obj}
-                        location={"list"}
-                        id={obj.id}
-                    ></PriorityPicker>
+                    <Box
+                        sx={{
+                            width: 40,
+                            display: "flex",
+                            justifyContent: "center",
+                        }}
+                    >
+                        <PriorityPicker
+                            priorityCount={obj.priority}
+                            setTodo={setTodo}
+                            obj={obj}
+                            location={"list"}
+                            id={obj.id}
+                        ></PriorityPicker>
+                    </Box>
 
                     <Typography
                         sx={{
                             flex: 1,
-                            fontSize: 26,
-                            color: obj.done ? "#94a3b8" : "#1e293b",
+                            ml: 1,
+                            fontSize: 15,
+                            overflow: "hidden",
+                            whiteSpace: "nowrap",
+                            textOverflow: "ellipsis",
+                            color: obj.done ? "#94A3B8" : "#1E293B",
                             textDecoration: obj.done ? "line-through" : "none",
                         }}
                     >
                         {obj.text}
                     </Typography>
 
-                    {obj.dueDate !== null && (
-                        <DueDateBadge dueDate={obj.dueDate}></DueDateBadge>
-                    )}
+                    <Box
+                        sx={{
+                            width: 70,
+                            display: "flex",
+                            justifyContent: "center",
+                        }}
+                    >
+                        {obj.dueDate && <DueDateBadge dueDate={obj.dueDate} />}
+                    </Box>
 
-                    {isHovered === obj.id && (
-                        <TaskActions
-                            todo={todo}
-                            setTodo={setTodo}
-                            id={obj.id}
-                        ></TaskActions>
-                    )}
+                    <Box
+                        sx={{
+                            width: 36,
+                            display: "flex",
+                            justifyContent: "center",
+                        }}
+                    >
+                        {isHovered === obj.id && (
+                            <TaskActions
+                                todo={todo}
+                                setTodo={setTodo}
+                                id={obj.id}
+                            />
+                        )}
+                    </Box>
                 </ListItem>
             ))}
         </List>

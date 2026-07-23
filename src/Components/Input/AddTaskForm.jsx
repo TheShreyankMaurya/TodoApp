@@ -9,6 +9,7 @@ import Alert from "@mui/material/Alert";
 import PriorityPicker from "./PriorityPicker";
 import AddIcon from "@mui/icons-material/Add";
 import Tooltip from "@mui/material/Tooltip";
+import "./Input.css";
 
 export default function AddTaskForm({
     addNewTodo,
@@ -26,6 +27,8 @@ export default function AddTaskForm({
     };
 
     let priorityStyle = {
+        width: 45,
+        height: 45,
         border: "2px solid #dbe3e7",
         borderRadius: 2,
         color: "#B9C2C8",
@@ -45,7 +48,7 @@ export default function AddTaskForm({
     }
 
     return (
-        <div>
+        <div className="add-task-container">
             {showAlert && (
                 <Alert severity="error" sx={{ mb: 2 }}>
                     Please enter some task!
@@ -58,15 +61,16 @@ export default function AddTaskForm({
                 onChange={updateTodoValue}
                 required
                 name="Task"
+                className="task-input"
             />
-            &nbsp;&nbsp;&nbsp;
+
             <PriorityPicker
                 priorityCount={priorityCount}
                 setPriorityCount={setPriorityCount}
                 style={priorityStyle}
                 id={null}
             ></PriorityPicker>
-            &nbsp;&nbsp;&nbsp;
+
             <LocalizationProvider dateAdapter={AdapterDayjs}>
                 <Tooltip
                     title="Due Date"
@@ -95,12 +99,18 @@ export default function AddTaskForm({
                     onClose={() => setOpen(false)}
                     slotProps={{
                         textField: {
-                            sx: { display: "none" },
+                            sx: {
+                                position: "absolute",
+                                width: 0,
+                                height: 0,
+                                opacity: 0,
+                                pointerEvents: "none",
+                            },
                         },
                     }}
                 />
             </LocalizationProvider>
-            &nbsp;&nbsp;&nbsp;
+
             <Tooltip
                 title="Add Task"
                 placement="top"

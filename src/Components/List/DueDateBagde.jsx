@@ -10,12 +10,14 @@ export default function DueDateBadge({ dueDate }) {
     return (
         <Typography
             sx={{
-                fontSize: 26,
-                backgroundColor: checkDueDate() ? "#fdeaea" : "#f1f4f6",
-                color: checkDueDate() ? "#D62839" : "#7c8a94",
-                borderRadius: 10,
-                paddingLeft: 5,
-                paddingRight: 5,
+                minWidth: 62,
+                textAlign: "center",
+                fontSize: 12,
+                px: 1.2,
+                py: 0.3,
+                borderRadius: "999px",
+                backgroundColor: checkDueDate() ? "#FDEAEA" : "#F3F5F7",
+                color: checkDueDate() ? "#D62839" : "#7C8A94",
             }}
         >
             {dueDate.format("MMM DD")}

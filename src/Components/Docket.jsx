@@ -62,7 +62,8 @@ export default function TodoList() {
 
             <Divider
                 sx={{
-                    borderColor: "#D8DEE2",
+                    borderColor: "#eef2f4",
+                    borderWidth: "0.5px",
                 }}
             ></Divider>
 

@@ -1,6 +1,7 @@
 import { TodoInfo } from "../TodoInfo";
 import Button from "@mui/material/Button";
 import ClearIcon from "@mui/icons-material/Clear";
+import "./Footer.css";
 
 export default function AppFooter({ todo, setTodo }) {
     function clearCompleted() {
@@ -8,8 +9,8 @@ export default function AppFooter({ todo, setTodo }) {
     }
 
     return (
-        <div>
-            <span style={{ color: "#94a3b8" }}>
+        <div className="footer">
+            <span className="remaining-text">
                 {TodoInfo(todo).remaining} remaining
             </span>
             &nbsp;&nbsp;&nbsp;
@@ -27,6 +28,7 @@ export default function AppFooter({ todo, setTodo }) {
                         textTransform: "none",
                         fontSize: 15,
                     }}
+                    className="clear-btn"
                 >
                     Clear completed
                 </Button>

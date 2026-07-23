@@ -24,7 +24,12 @@ export default function PriorityPicker({
                     enterDelay={800}
                     enterNextDelay={800}
                 >
-                    <OutlinedFlagRoundedIcon></OutlinedFlagRoundedIcon>
+                    <OutlinedFlagRoundedIcon
+                        sx={{
+                            color: "#C7D2DA",
+                            fontSize: 25,
+                        }}
+                    ></OutlinedFlagRoundedIcon>
                 </Tooltip>
             );
             break;
@@ -38,7 +43,7 @@ export default function PriorityPicker({
                     enterNextDelay={800}
                 >
                     <FlagRoundedIcon
-                        sx={{ color: "#3F9142" }}
+                        sx={{ color: "#3F9142", fontSize: 25 }}
                     ></FlagRoundedIcon>
                 </Tooltip>
             );
@@ -53,7 +58,7 @@ export default function PriorityPicker({
                     enterNextDelay={800}
                 >
                     <FlagRoundedIcon
-                        sx={{ color: "#E3A008" }}
+                        sx={{ color: "#E3A008", fontSize: 25 }}
                     ></FlagRoundedIcon>
                 </Tooltip>
             );
@@ -68,7 +73,7 @@ export default function PriorityPicker({
                     enterNextDelay={800}
                 >
                     <FlagRoundedIcon
-                        sx={{ color: "#D62839" }}
+                        sx={{ color: "#D62839", fontSize: 25 }}
                     ></FlagRoundedIcon>
                 </Tooltip>
             );
@@ -94,16 +99,21 @@ export default function PriorityPicker({
         }
     }
 
-    return (
-        <>
-            <IconButton
-                onClick={() => {
-                    changePriority(id);
-                }}
-                sx={style}
-            >
-                {content}
-            </IconButton>
-        </>
+    return location === "list" ? (
+        <span
+            onClick={() => changePriority(id)}
+            style={{
+                display: "flex",
+                cursor: "pointer",
+                alignItems: "center",
+                justifyContent: "center",
+            }}
+        >
+            {content}
+        </span>
+    ) : (
+        <IconButton onClick={() => changePriority(id)} sx={style}>
+            {content}
+        </IconButton>
     );
 }

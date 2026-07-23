@@ -12,8 +12,19 @@ export default function TaskActions({ todo, setTodo, id }) {
                 onClick={() => {
                     deleteTodo(id);
                 }}
+                size="small"
+                sx={{
+                    color: "#94A3B8",
+                    p: 0.5,
+                    "&:hover": {
+                        color: "#D62839",
+                        backgroundColor: "#FEECEC",
+                    },
+                }}
             >
-                <DeleteOutlineOutlinedIcon></DeleteOutlineOutlinedIcon>
+                <DeleteOutlineOutlinedIcon
+                    sx={{ fontSize: 25 }}
+                ></DeleteOutlineOutlinedIcon>
             </IconButton>
         </div>
     );

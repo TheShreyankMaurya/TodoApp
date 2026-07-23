@@ -15,19 +15,27 @@ export default function TaskCheckbox({ todo, setTodo, obj }) {
     }
 
     return (
-        <span onClick={() => changeDone(obj.id)}>
+        <span
+            onClick={() => changeDone(obj.id)}
+            style={{
+                display: "flex",
+                cursor: "pointer",
+            }}
+        >
             {obj.done ? (
                 <CheckCircleIcon
+                    size="small"
                     sx={{
-                        color: "#4f46e5",
-                        fontSize: 44,
+                        color: "#4F52E0",
+                        fontSize: 28,
                     }}
                 />
             ) : (
                 <RadioButtonUncheckedIcon
+                    size="small"
                     sx={{
-                        color: "#cbd5e1",
-                        fontSize: 44,
+                        color: "#C7D2DA",
+                        fontSize: 28,
                     }}
                 />
             )}
